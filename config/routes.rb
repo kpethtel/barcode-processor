@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :barcodes do
     collection do
       get :import
+      post :import, to: 'barcodes#upload'
     end
   end
 
