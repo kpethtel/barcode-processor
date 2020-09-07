@@ -1,0 +1,16 @@
+version: "3.2"
+
+services:
+  web:
+    build: .
+    command: sleep 100d
+    volumes:
+      - ./:/home/web/app
+      - ./tmp/bundle:/usr/local/bundle
+    ports:
+      - 3000:3000
+
+  db:
+    image: postgres:10
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data

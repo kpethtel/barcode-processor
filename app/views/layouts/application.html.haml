@@ -1,0 +1,20 @@
+!!!
+%html{:lang => I18n.locale}
+  %head
+    %meta(charset="utf-8")
+    %title Netskin Coding Challenge
+    =csrf_meta_tag
+    =stylesheet_link_tag "application", media: "all"
+    =javascript_include_tag "application"
+
+  %body
+    %nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          =link_to "Netskin Coding Challenge", :root, :class => "navbar-brand"
+
+    .container-fluid
+      =render "layouts/flash"
+      =yield
+
+    #modal.modal

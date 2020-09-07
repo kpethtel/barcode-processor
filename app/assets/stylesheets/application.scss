@@ -1,0 +1,15 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.form-horizontal {
+  .control-label {
+    text-align: left;
+  }
+}
+
+.navbar-brand {
+  & > img {
+    display: inline;
+    margin-top: -7px;
+  }
+}

@@ -1,0 +1,22 @@
+.pull-right
+  =link_to "New user", [:new, :user], :class => "btn btn-default"
+
+%h1
+  Users
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Id
+      %th Name
+      %th E-Mail
+      %th Actions
+  %tbody
+    -User.order(:id).each do |user|
+      %tr
+        %td=user.id
+        %td=user.decorate.name
+        %td=mail_to user.email
+        %td
+          =link_to "edit", [:edit, user]
+          =link_to "delete", user, method: :delete, data: {confirm: "Sure?"}

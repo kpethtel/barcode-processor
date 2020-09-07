@@ -1,0 +1,7 @@
+-if flash.any?
+  .row
+    .col-md-4.col-md-offset-4
+      -flash.to_hash.each do |type, message|
+        -if message.present?
+          .alert(class="#{bootstrap_alert_class_for(type)}")
+            =message

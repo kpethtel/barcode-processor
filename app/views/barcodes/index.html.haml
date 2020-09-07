@@ -1,0 +1,19 @@
+.pull-right
+  =link_to "Import barcodes", [:import, :barcodes], :class => "btn btn-default"
+
+%h1
+  Barcodes
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Id
+      %th Barcode
+      %th Source
+  %tbody
+-# TODO
+-#     -Barcode.order(:id).each do |barcode|
+-#       %tr
+-#         %td=barcode.id
+-#         %td=barcode.ean8
+-#         %td=barcode.source
