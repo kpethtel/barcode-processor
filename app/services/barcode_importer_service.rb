@@ -55,13 +55,26 @@ class BarcodeImporterService
   def process_barcodes
     barcodes.each do |code|
       status = nil
-      if EAN8.valid?(code)
-        barcode = Barcode.new(ean8: code, source: 'excel')
+      code8 = coerce_to_ean8(code)
+      if EAN8.valid?(code8)
+        barcode = Barcode.new(ean8: code8, source: 'excel')
         status = barcode.save ? :success : :failure
       else
         status = :failure
       end
-      barcode_statuses[status] << code
+      barcode_statuses[status] << code8
     end
+  end
+
+
+  def coerce_to_ean8(code)
+    length = code.length
+    return nil if length > 8
+    return code if length == 8
+    characters_needed = 7 - code.length
+    code_to_seven = '0' * characters_needed + code
+    code_to_eight = '0' + code_to_seven
+    return code_to_eight if EAN8.valid?(code_to_eight)
+    EAN8.complete(code_to_seven)
   end
 end
