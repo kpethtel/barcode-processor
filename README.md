@@ -64,3 +64,28 @@ The website can be opened at http://localhost:3000. The docker-compose.yml is mo
 * Bonus points for: write some unit and controller specs for your tasks
 
 Good luck and happy coding! :)
+
+keywords:
+* Problems faced:
+  * Docker: I'm currently on an ubuntu machine (but I traditionally use mac and will
+  get a new mac upon hire to avoid switching keyboards between work and personal), which lead to some issues. Docker also makes debugging more tedious at times. I had some
+  issues with docker-pry not being able to connect to the server, which made it
+  challenging to figure out the file upload/rubyXL interactions.
+  * Understanding the task: there's some ambiguity built into the assignment, and it
+  took several close readings of the README as well as reading through the EAN8
+  documentation to better understand how EAN8 works.
+  * Setting up tests: I don't set up rspec very often so there are always little issues
+  I encounter that need to be debugged. For example, I realized the tests were using
+  the dev database and had to change the rails helper to fix the issue.
+  * Error handling: error handling for the file upload required some care because
+  there are multiple ways it can fail.
+* Areas for improvement:
+  * Unit tests: I would generally prefer unit tests for service objects, but request specs
+  are more valuable and in this case the unit tests would be completely redundant, so I
+  skipped them.
+  * More nuanced feedback: the feedback to the user does not indicate what the problems
+  are with uploaded codes and also doesn't tell the user how many records were created
+  when there are any failures in the upload.
+  * I think you could make an argument for breaking up the barcode import service
+  into separate file processing and code processing. This would allow for unit
+  tests instead of fixture tests.
