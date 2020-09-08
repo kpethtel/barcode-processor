@@ -1,10 +1,10 @@
 class BarcodesController < ApplicationController
-  before_action :process_barcode_file, only: :upload
 
   def import
   end
 
   def upload
+    process_barcode_file
     if error
       flash.alert = error
       return render :import
@@ -13,11 +13,25 @@ class BarcodesController < ApplicationController
       flash.alert = "Invalid barcodes found: #{failures.join(', ')}"
       return render :import
     end
-    flash.alert = "#{successes.count} barcodes imported!"
+    flash.notice = "#{successes.count} barcodes imported!"
+    redirect_to :root
+  end
+
+  def generate
+    generate_random_barcodes
+    flash.notice = "#{generator.number_generated} barcodes generated"
     redirect_to :root
   end
 
   private
+
+  def generate_random_barcodes
+    generator.execute
+  end
+
+  def generator
+    @generator ||= BarcodeGeneratorService.new
+  end
 
   def file
     @file ||= params.dig(:upload, :file)

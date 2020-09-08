@@ -1,5 +1,7 @@
 .pull-right
-  =link_to "Import barcodes", [:import, :barcodes], :class => "btn btn-default"
+  %div{class: 'right-buttons'}
+    =button_to "Generate new barcodes", [:generate, :barcodes], :class => "btn btn-default"
+    =link_to "Import barcodes", [:import, :barcodes], :class => "btn btn-default"
 
 %h1
   Barcodes

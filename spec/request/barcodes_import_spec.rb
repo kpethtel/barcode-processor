@@ -16,5 +16,17 @@ RSpec.describe 'Barcodes import', type: :request do
       expected = %w[00000031 00000079 00000093 12345670]
       expect(barcodes).to match_array(expected)
     end
+
+    it 'does not create Barcodes that already exist' do
+      post '/barcodes/import', params: { upload: { file: file }}
+      expect do
+        post '/barcodes/import', params: { upload: { file: file }}
+      end.not_to change{ Barcode.count }
+    end
+
+    it 'sets source to "excel"' do
+      post '/barcodes/import', params: { upload: { file: file }}
+      expect(Barcode.pluck(:source).uniq!).to match_array(['excel'])
+    end
   end
 end

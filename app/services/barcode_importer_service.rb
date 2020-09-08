@@ -71,8 +71,7 @@ class BarcodeImporterService
     length = code.length
     return nil if length > 8
     return code if length == 8
-    characters_needed = 7 - code.length
-    code_to_seven = '0' * characters_needed + code
+    code_to_seven = code.rjust(7, '0')
     code_to_eight = '0' + code_to_seven
     return code_to_eight if EAN8.valid?(code_to_eight)
     EAN8.complete(code_to_seven)
