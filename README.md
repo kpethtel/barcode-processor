@@ -76,3 +76,4 @@ keywords:
   * More nuanced feedback: the feedback to the user does not indicate what the problems are with uploaded codes and also doesn't tell the user how many records were created when there are any failures in the upload.
   * Separation of concerns: I think you could make an argument for breaking up the barcode import service into separate file processing and code processing. This would allow for unit tests instead of fixture tests.
   * Navigation: it would be nice for the import page to have a link to navigate to the home or barcode pages
+  * User login: this app doesn't have proper authentication or user implementation
